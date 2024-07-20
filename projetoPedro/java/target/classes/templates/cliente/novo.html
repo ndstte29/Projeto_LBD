@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/cliente/insere" th:object="${cliente}" method="post">
+        <div>
+            Nome: <input type="text" th:field="*{cli_nome}">
+        </div>
+        <div>
+            CPF: <input type="text" th:field="*{cli_cpf}">
+        </div>
+        <div>
+            Data De Nascimento: <input type="text" th:field="*{cli_nascimento}">
+        </div>
+        <div>
+            RG: <input type="text" th:field="*{cli_rg}">
+        </div>
+        <div>
+            Telefone: <input type="text" th:field="*{cli_telefone}">
+        </div>
+        <div>
+            Profissão: <input type="text" th:field="*{cli_profissao}">
+        </div>
+        <div>
+            Salario: <input type="text" th:field="*{cli_salario}">
+        </div>
+        <div>
+            Estado Civil:
+            <select th:field="*{clienteestadocivil.est_codigo}">
+                <option th:each="c: ${estado_civil}"
+                        th:value="${c.est_codigo}"
+                        th:text="${c.est_descricao}"
+                        th:selected="${c.est_codigo == cliente.clienteestadocivil.est_codigo}">
+                </option>
+            </select>
+        </div>
+
+        <input type="submit" value="Gravar">
+    </form>
+</body>
+</html>
